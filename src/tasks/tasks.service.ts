@@ -15,4 +15,17 @@ export class TasksService {
     create(createTask: any) {
         new this.taskModel(createTask).save
     }
+
+    async findOne(id: string) {
+        return this.taskModel.findById(id)
+    }
+
+    async delete(id: string) {
+        return this.taskModel.findByIdAndDelete(id)
+    }
+    
+    async update(id: string, task: any) {
+        return this.taskModel.findByIdAndUpdate(id)
+    }
+
 }
