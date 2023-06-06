@@ -9,7 +9,6 @@ import { IUpdateTaskDto } from 'src/dto/update-task.dto';
 export class TasksService {
     constructor(@InjectModel(Task.name) private taskModel: Model<Task>){}
 
-
     findAll(): Promise<Task[]> {
         return this.taskModel.find();
     }

@@ -1,5 +1,15 @@
-export interface IUpdateTaskDto {
+import { IsBoolean, IsOptional, IsString } from "class-validator";
+
+export class IUpdateTaskDto {
+    @IsString()
+    @IsOptional()
     title?: string;
+    
+    @IsString()
+    @IsOptional()
     description?: string;
-    done?: string;
+
+    @IsBoolean()
+    @IsOptional()
+    done?: boolean;
 }
