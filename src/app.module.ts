@@ -4,7 +4,7 @@ import {MongooseModule} from '@nestjs/mongoose'
 
 @Module({
   imports: [TasksModule, 
-    MongooseModule.forRoot('mongodb://localhost/tasksdb')],
+    MongooseModule.forRoot('mongodb://127.0.0.1/tasksdb')],
   controllers: [],
   providers: [],
 })
