@@ -4,6 +4,7 @@ import {Task} from '../schemas/task.schema'
 import { Model } from 'mongoose';
 import { CreateTaskDto } from 'src/dto/create-task.dto';
 import { UpdateTaskDto } from 'src/dto/update-task.dto';
+import { TaskResponseDto } from 'src/dto/task.response.dto';
 
 @Injectable()
 export class TasksService {
@@ -13,12 +14,13 @@ export class TasksService {
         return this.taskModel.find();
     }
 
-    create(createTask: CreateTaskDto) {
+    async create(createTask: CreateTaskDto): Promise<TaskResponseDto> {
         const newTask = new this.taskModel(createTask)
-        return newTask.save()
+        await newTask.save()
+        return TaskResponseDto.mapToResponse(newTask)
     }
 
-    async findOne(id: string) {
+    async findOne(id: string): Promise<TaskResponseDto> {
         return this.taskModel.findById(id)
     }
 
@@ -27,7 +29,7 @@ export class TasksService {
     }
     
     async update(id: string, task: UpdateTaskDto) {
-        return this.taskModel.findByIdAndUpdate(id)
+        return this.taskModel.findByIdAndUpdate(id, task, {new: true})
     }
 
 }
